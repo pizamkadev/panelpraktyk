@@ -16,5 +16,5 @@ public class CompanyService {
 
     public void dodajFirme(Company firma) {
         companyRepository.save(firma);
-    }
+    }//komentarztest
 }

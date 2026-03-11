@@ -66,5 +66,5 @@ public class Company {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
-    }
+    }//komentarz
 }

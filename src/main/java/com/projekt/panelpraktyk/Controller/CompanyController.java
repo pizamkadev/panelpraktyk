@@ -19,6 +19,6 @@ public class CompanyController {
 
         companyService.dodajFirme(company);
 
-        return "Firma dodana";
+        return "Firma dodana!";
     }
 }
