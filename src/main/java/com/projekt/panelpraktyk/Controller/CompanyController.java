@@ -5,7 +5,7 @@ import com.projekt.panelpraktyk.models.Company;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/firmy")
+@RequestMapping("/api/companies")
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -15,10 +15,7 @@ public class CompanyController {
     }
 
     @PostMapping
-    public String dodajFirme(@RequestBody Company company) {
-
-        companyService.dodajFirme(company);
-
-        return "Firma dodana!";
+    public Company addCompany(@RequestBody Company company) {
+        return companyService.addCompany(company);
     }
 }

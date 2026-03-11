@@ -1,8 +1,9 @@
 package com.projekt.panelpraktyk.Service;
 
-
 import com.projekt.panelpraktyk.Repository.CompanyRepository;
+
 import com.projekt.panelpraktyk.models.Company;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +15,7 @@ public class CompanyService {
         this.companyRepository = companyRepository;
     }
 
-    public void dodajFirme(Company firma) {
-        companyRepository.save(firma);
-    }//komentarztest
+    public Company addCompany(final Company company) {
+        return companyRepository.save(company);
+    }
 }
