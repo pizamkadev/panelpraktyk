@@ -18,4 +18,9 @@ public class CompanySupervisorController {
     public CompanySupervisor addSupervisor(@RequestBody CompanySupervisor supervisor) {
         return service.addSupervisor(supervisor);
     }
+
+    @DeleteMapping("/{supervisorId}")
+    public void deleteSupervisor(@PathVariable Long supervisorId) {
+        service.deleteSupervisorById(supervisorId);
+    }
 }

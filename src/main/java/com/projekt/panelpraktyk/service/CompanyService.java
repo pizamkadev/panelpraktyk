@@ -18,4 +18,7 @@ public class CompanyService {
     public Company addCompany(final Company company) {
         return companyRepository.save(company);
     }
+    public void deleteCompanyById(Long companyId) {
+        companyRepository.deleteById(companyId);
+    }
 }

@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.Controller;
+package com.projekt.panelpraktyk.controller;
 
-import com.projekt.panelpraktyk.Service.ClassService;
+import com.projekt.panelpraktyk.service.ClassService;
 import com.projekt.panelpraktyk.models.Class;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

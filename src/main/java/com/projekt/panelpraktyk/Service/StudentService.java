@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.Service;
+package com.projekt.panelpraktyk.service;
 
-import com.projekt.panelpraktyk.Repository.StudentRepository;
+import com.projekt.panelpraktyk.repository.StudentRepository;
 import com.projekt.panelpraktyk.models.Student;
 import org.springframework.stereotype.Service;
 

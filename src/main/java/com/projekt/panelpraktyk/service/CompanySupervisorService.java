@@ -16,4 +16,8 @@ public class CompanySupervisorService {
     public CompanySupervisor addSupervisor(CompanySupervisor supervisor) {
         return repository.save(supervisor);
     }
+
+    public void deleteSupervisorById(Long supervisorId) {
+        repository.deleteById(supervisorId);
+    }
 }
