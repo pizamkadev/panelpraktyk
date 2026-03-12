@@ -17,7 +17,7 @@ public class Class {
     private String className;
 
     @Column(name = "LiczbaUczniow")
-    private int liczbaUczniow;
+    private int numberOfStudents;
 
     public Class() {
     }
