@@ -19,8 +19,4 @@ public class CompanyController {
         return companyService.addCompany(company);
     }
 
-    @DeleteMapping("/{companyId}")
-    public void deleteCompany(@PathVariable Long companyId) {
-        companyService.deleteCompanyById(companyId);
-    }
 }
