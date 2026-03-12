@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.Controller;
+package com.projekt.panelpraktyk.controller;
 
-import com.projekt.panelpraktyk.Service.CompanySupervisorService;
+import com.projekt.panelpraktyk.service.CompanySupervisorService;
 import com.projekt.panelpraktyk.models.CompanySupervisor;
 import org.springframework.web.bind.annotation.*;
 

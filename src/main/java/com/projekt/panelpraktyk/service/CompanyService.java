@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.Service;
+package com.projekt.panelpraktyk.service;
 
-import com.projekt.panelpraktyk.Repository.CompanyRepository;
+import com.projekt.panelpraktyk.repository.CompanyRepository;
 
 import com.projekt.panelpraktyk.models.Company;
 

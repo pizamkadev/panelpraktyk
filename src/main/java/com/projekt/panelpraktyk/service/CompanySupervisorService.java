@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.Service;
+package com.projekt.panelpraktyk.service;
 
-import com.projekt.panelpraktyk.Repository.CompanySupervisorRepository;
+import com.projekt.panelpraktyk.repository.CompanySupervisorRepository;
 import com.projekt.panelpraktyk.models.CompanySupervisor;
 import org.springframework.stereotype.Service;
 
