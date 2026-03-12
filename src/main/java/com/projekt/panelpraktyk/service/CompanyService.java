@@ -1,9 +1,7 @@
 package com.projekt.panelpraktyk.service;
 
 import com.projekt.panelpraktyk.repository.CompanyRepository;
-
 import com.projekt.panelpraktyk.models.Company;
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +16,7 @@ public class CompanyService {
     public Company addCompany(final Company company) {
         return companyRepository.save(company);
     }
+
     public void deleteCompanyById(Long companyId) {
         companyRepository.deleteById(companyId);
     }
