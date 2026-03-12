@@ -14,7 +14,7 @@ public class Class {
     private Long id;
 
     @Column(name = "Klasa")
-    private String klasa;
+    private String className;
 
     @Column(name = "LiczbaUczniow")
     private int liczbaUczniow;

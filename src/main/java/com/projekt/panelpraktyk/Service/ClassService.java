@@ -10,11 +10,11 @@ import java.util.List;
 public class ClassService {
     private final ClassRepository classRepository;
 
-    public ClassService(ClassRepository klasyRepository) {
-        this.classRepository = klasyRepository;
+    public ClassService(ClassRepository classRepository) {
+        this.classRepository = classRepository;
     }
 
-    public List<Class> saveAll(final List<Class> listaKlas) {
-        return classRepository.saveAll(listaKlas);
+    public List<Class> saveAll(final List<Class> listClass) {
+        return classRepository.saveAll(listClass);
     }
 }

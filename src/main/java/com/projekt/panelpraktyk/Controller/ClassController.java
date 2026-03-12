@@ -13,12 +13,12 @@ public class ClassController {
 
     private final ClassService classService;
 
-    public ClassController(ClassService klasyService) {
-        this.classService = klasyService;
+    public ClassController(ClassService classService) {
+        this.classService = classService;
     }
 
     @PostMapping("/api/klasy")
-    public List<Class> addMultipleKlasy(@RequestBody List<Class> listaKlas) {
-        return classService.saveAll(listaKlas);
+    public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
+        return classService.saveAll(listClass);
     }
 }
