@@ -8,16 +8,13 @@ import java.util.List;
 
 @Service
 public class StudentService {
-    private final StudentRepository StudentRepository;
+    private final StudentRepository studentRepository;
 
     public StudentService(StudentRepository StudentRepository) {
-        this.StudentRepository = StudentRepository;
+        this.studentRepository = StudentRepository;
     }
 
-    public List<Student> zapiszUczniow(List<Student> listaUczniow) {
-        return StudentRepository.saveAll(listaUczniow);
+    public List<Student> saveStudents(List<Student> listStudents) {
+        return studentRepository.saveAll(listStudents);
     }
-
-
-
 }
