@@ -1,27 +1,32 @@
-package com.projekt.panelpraktyk.Controller;
+package com.projekt.panelpraktyk.controller;
 
-import com.projekt.panelpraktyk.Service.StudentService;
+import com.projekt.panelpraktyk.service.StudentService;
 import com.projekt.panelpraktyk.models.Student;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/students")
+@RequestMapping("/api")
 public class StudentController {
-    private final StudentService StudentService;
+    private final StudentService studentService;
 
-    public StudentController(StudentService StudentService) {
-        this.StudentService = StudentService;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
-    @PostMapping
-    public final List<Student> addStudents(@RequestBody List<Student> students) {
-        return StudentService.saveStudents(students);
+    @GetMapping("/allStudents")
+    public List<Student> getAllStudents(){
+        return studentService.findAll();
     }
 
+    @GetMapping("/student/{id}")
+    public Student getOneStudent(@PathVariable Long id) {
+        return studentService.findOne(id);
+    }
 
+    @PostMapping("/addstudents")
+    public List<Student> addStudents(@RequestBody List<Student> students) {
+        return studentService.saveStudents(students);
+    }
 }

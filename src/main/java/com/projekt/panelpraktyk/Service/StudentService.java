@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.Service;
+package com.projekt.panelpraktyk.service;
 
-import com.projekt.panelpraktyk.Repository.StudentRepository;
+import com.projekt.panelpraktyk.repository.StudentRepository;
 import com.projekt.panelpraktyk.models.Student;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +16,13 @@ public class StudentService {
 
     public List<Student> saveStudents(List<Student> listStudents) {
         return studentRepository.saveAll(listStudents);
+    }
+
+    public List<Student> findAll(){
+        return studentRepository.findAll();
+    }
+
+    public Student findOne(Long id) {
+        return studentRepository.findById(id).orElse(null);
     }
 }
