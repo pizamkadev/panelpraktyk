@@ -19,7 +19,7 @@ public class CompanySupervisorService {
         return repository.save(supervisor);
     }
 
-    public void deleteSupervisorById(Long supervisorId) {
+    public void deleteSupervisorById(final Long supervisorId) {
         repository.deleteById(supervisorId);
     }
 
@@ -27,7 +27,7 @@ public class CompanySupervisorService {
         return repository.findAll();
     }
 
-    public CompanySupervisor getSupervisorById(Long id) {
+    public CompanySupervisor getSupervisorById(final Long id) {
         return repository.findById(id).orElse(null);
     }
 }
