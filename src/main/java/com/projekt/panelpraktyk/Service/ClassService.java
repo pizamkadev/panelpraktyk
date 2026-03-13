@@ -17,4 +17,8 @@ public class ClassService {
     public List<Class> saveAll(final List<Class> listClass) {
         return classRepository.saveAll(listClass);
     }
+
+    public void deleteClassById(Long id) {
+        classRepository.deleteById(id);
+    }
 }

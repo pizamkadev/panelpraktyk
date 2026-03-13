@@ -17,4 +17,8 @@ public class StudentService {
     public List<Student> saveStudents(List<Student> listStudents) {
         return studentRepository.saveAll(listStudents);
     }
+
+    public void deleteStudentById(Long id) {
+        studentRepository.deleteById(id);
+    }
 }

@@ -5,6 +5,8 @@ import com.projekt.panelpraktyk.models.Class;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -20,5 +22,10 @@ public class ClassController {
     @PostMapping("/api/klasy")
     public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
         return classService.saveAll(listClass);
+    }
+
+    @DeleteMapping("/api/klasy/{id}")
+    public void deleteClass(@PathVariable Long id) {
+        classService.deleteClassById(id);
     }
 }

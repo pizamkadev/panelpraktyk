@@ -4,8 +4,6 @@ import com.projekt.panelpraktyk.service.CompanyService;
 import com.projekt.panelpraktyk.models.Company;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/companies")
 public class CompanyController {
@@ -19,10 +17,5 @@ public class CompanyController {
     @PostMapping
     public Company addCompany(@RequestBody Company company) {
         return companyService.addCompany(company);
-    }
-
-    @GetMapping
-    public List<Company> getCompanies() {
-        return companyService.getCompanies();
     }
 }
