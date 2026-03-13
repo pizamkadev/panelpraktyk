@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.Controller;
+package com.projekt.panelpraktyk.controller;
 
-import com.projekt.panelpraktyk.Service.CompanyService;
+import com.projekt.panelpraktyk.service.CompanyService;
 import com.projekt.panelpraktyk.models.Company;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,5 +17,9 @@ public class CompanyController {
     @PostMapping
     public Company addCompany(@RequestBody Company company) {
         return companyService.addCompany(company);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteCompany(@PathVariable Long id) {
+        companyService.deleteCompanyById(id);
     }
 }
