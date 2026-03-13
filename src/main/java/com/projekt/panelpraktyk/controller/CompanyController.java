@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.controller;
+package com.projekt.panelpraktyk.Controller;
 
-import com.projekt.panelpraktyk.service.CompanyService;
+import com.projekt.panelpraktyk.Service.CompanyService;
 import com.projekt.panelpraktyk.models.Company;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,5 +18,4 @@ public class CompanyController {
     public Company addCompany(@RequestBody Company company) {
         return companyService.addCompany(company);
     }
-
 }

@@ -1,6 +1,6 @@
-package com.projekt.panelpraktyk.service;
+package com.projekt.panelpraktyk.Service;
 
-import com.projekt.panelpraktyk.repository.CompanyRepository;
+import com.projekt.panelpraktyk.Repository.CompanyRepository;
 
 import com.projekt.panelpraktyk.models.Company;
 
@@ -17,8 +17,5 @@ public class CompanyService {
 
     public Company addCompany(final Company company) {
         return companyRepository.save(company);
-    }
-    public void deleteCompanyById(final Long companyId) {
-        companyRepository.deleteById(companyId);
     }
 }

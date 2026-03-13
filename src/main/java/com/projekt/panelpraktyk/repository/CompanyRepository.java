@@ -1,4 +1,4 @@
-package com.projekt.panelpraktyk.repository;
+package com.projekt.panelpraktyk.Repository;
 
 import com.projekt.panelpraktyk.models.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
