@@ -19,16 +19,15 @@ public class CompanySupervisorService {
         return repository.save(supervisor);
     }
 
+    public void deleteSupervisorById(final Long supervisorId) {
+        repository.deleteById(supervisorId);
+    }
+
     public List<CompanySupervisor> getAllSupervisors() {
         return repository.findAll();
     }
 
-    public CompanySupervisor getSupervisorById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Supervisor not found"));
-    }
-
-    public void deleteSupervisorById(Long supervisorId) {
-        repository.deleteById(supervisorId);
+    public CompanySupervisor getSupervisorById(final Long id) {
+        return repository.findById(id).orElse(null);
     }
 }
