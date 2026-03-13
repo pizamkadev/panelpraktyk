@@ -27,4 +27,8 @@ public class CompanySupervisorService {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Supervisor not found"));
     }
+
+    public void deleteSupervisorById(Long supervisorId) {
+        repository.deleteById(supervisorId);
+    }
 }
