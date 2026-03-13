@@ -6,6 +6,8 @@ import com.projekt.panelpraktyk.models.Company;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompanyService {
 
@@ -17,6 +19,10 @@ public class CompanyService {
 
     public Company addCompany(final Company company) {
         return companyRepository.save(company);
+    }
+
+    public List<Company> getCompanies() {
+        return companyRepository.findAll();
     }
     public void deleteCompanyById(Long companyId) {
         companyRepository.deleteById(companyId);
