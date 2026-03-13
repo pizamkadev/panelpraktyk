@@ -27,7 +27,6 @@ public class ClassController {
     }
 
     @PostMapping("/api/klasy")
-    @PostMapping
     public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
         return classService.saveAll(listClass);
     }

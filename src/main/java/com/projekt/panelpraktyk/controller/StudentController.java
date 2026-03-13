@@ -31,6 +31,6 @@ public class StudentController {
     }
     @PutMapping("/edit")
     public Student editOne(@RequestParam String name, @RequestParam String lastname, @RequestBody Student student){
-        return StudentService.updateStudentByName(name, lastname, student);
+        return studentService.updateStudentByName(name, lastname, student);
     }
 }
