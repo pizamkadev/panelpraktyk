@@ -27,4 +27,4 @@ public class CompanyService {
     public void deleteCompanyById(final Long companyId) {
         companyRepository.deleteById(companyId);
     }
-} //maciek
+}
