@@ -16,14 +16,14 @@ public class ClassController {
         this.classService = classService;
     }
 
-    @GetMapping("/api/allClass")
+    @GetMapping("/api/class")
     public List<Class> getAllClass(){
         return classService.findAll();
     }
 
     @GetMapping("/api/class/{id}")
     public Class getAllClass(@PathVariable Long id){
-        return classService.findOne(id);
+        return classService.findClass(id);
     }
 
     @PostMapping("/api/klasy")

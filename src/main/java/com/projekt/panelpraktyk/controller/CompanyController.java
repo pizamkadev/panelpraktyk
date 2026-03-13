@@ -16,7 +16,7 @@ public class CompanyController {
     }
 
     @PostMapping("/api/companys")
-    public Company addCompany(@RequestBody final Company company) {
+    public Company addCompany(@RequestBody Company company) {
         return companyService.addCompany(company);
     }
 

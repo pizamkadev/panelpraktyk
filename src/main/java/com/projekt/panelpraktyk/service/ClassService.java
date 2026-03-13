@@ -23,7 +23,7 @@ public class ClassService {
         return classRepository.findAll();
     }
 
-    public Class findOne(Long id) {
+    public Class findClass(Long id) {
         return classRepository.findById(id).orElse(null);
     }
 
