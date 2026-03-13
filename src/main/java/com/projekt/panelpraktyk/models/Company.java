@@ -1,15 +1,19 @@
 package com.projekt.panelpraktyk.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 public class Company {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +25,10 @@ public class Company {
     private String regon;
     private String krs;
     private String phoneNumber;
+
+
+
+    @OneToMany(mappedBy = "company")
+    @JsonIgnoreProperties("company")
+    private List<CompanySupervisor> supervisors;
 }

@@ -1,5 +1,6 @@
 package com.projekt.panelpraktyk.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,11 @@ public class CompanySupervisor {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String companyName;
+
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    @JsonIgnoreProperties("supervisors")
+    private Company company;
 
 }
