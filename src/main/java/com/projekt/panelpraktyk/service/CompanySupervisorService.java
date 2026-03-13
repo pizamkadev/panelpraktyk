@@ -4,6 +4,8 @@ import com.projekt.panelpraktyk.repository.CompanySupervisorRepository;
 import com.projekt.panelpraktyk.models.CompanySupervisor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompanySupervisorService {
 
@@ -19,5 +21,13 @@ public class CompanySupervisorService {
 
     public void deleteSupervisorById(Long supervisorId) {
         repository.deleteById(supervisorId);
+    }
+
+    public List<CompanySupervisor> getAllSupervisors() {
+        return repository.findAll();
+    }
+
+    public CompanySupervisor getSupervisorById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }

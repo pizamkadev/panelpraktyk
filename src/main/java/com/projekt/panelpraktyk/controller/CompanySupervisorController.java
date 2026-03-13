@@ -4,8 +4,10 @@ import com.projekt.panelpraktyk.service.CompanySupervisorService;
 import com.projekt.panelpraktyk.models.CompanySupervisor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/supervisors")
+@RequestMapping("/api/supervisors")
 public class CompanySupervisorController {
 
     private final CompanySupervisorService service;
@@ -19,8 +21,18 @@ public class CompanySupervisorController {
         return service.addSupervisor(supervisor);
     }
 
+    @GetMapping
+    public List<CompanySupervisor> getAllSupervisors() {
+        return service.getAllSupervisors();
+    }
+    @GetMapping("/{id}")
+    public CompanySupervisor getSupervisor(@PathVariable Long id) {
+        return service.getSupervisorById(id);
+    }
+
     @DeleteMapping("/{id}")
-    public void deleteSupervisor(@PathVariable Long id) {
+    public String deleteSupervisor(@PathVariable Long id) {
         service.deleteSupervisorById(id);
+        return "Supervisor deleted with id: " + id;
     }
 }

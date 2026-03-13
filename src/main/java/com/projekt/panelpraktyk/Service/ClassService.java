@@ -17,4 +17,19 @@ public class ClassService {
     public List<Class> saveAll(final List<Class> listClass) {
         return classRepository.saveAll(listClass);
     }
+
+    public Class updateClassByName(String className, Class details) {
+        Class schoolClass = classRepository.findByClassName(className).orElseThrow(() -> new RuntimeException("Nie znaleziono klasy: " + className));
+
+        if (details.getClassName() != null) {
+            schoolClass.setClassName(details.getClassName());
+        }
+
+        if (details.getNumberOfStudents() > 0) {
+            schoolClass.setNumberOfStudents(details.getNumberOfStudents());
+        }
+
+
+        return classRepository.save(schoolClass);
+    }
 }
