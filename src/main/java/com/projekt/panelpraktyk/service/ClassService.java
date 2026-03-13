@@ -1,5 +1,7 @@
 package com.projekt.panelpraktyk.service;
 
+import com.projekt.panelpraktyk.models.Student;
+import com.projekt.panelpraktyk.repository.ClassRepository;
 import com.projekt.panelpraktyk.repository.ClassRepository;
 import com.projekt.panelpraktyk.models.Class;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,13 @@ public class ClassService {
 
     public List<Class> saveAll(final List<Class> listClass) {
         return classRepository.saveAll(listClass);
+    }
+    public List<Class> findAll(){
+        return classRepository.findAll();
+    }
+
+    public Class findClass(Long id) {
+        return classRepository.findById(id).orElse(null);
     }
 
     public Class updateClassByName(String className, Class details) {

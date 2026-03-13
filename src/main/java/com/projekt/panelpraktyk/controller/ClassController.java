@@ -16,7 +16,17 @@ public class ClassController {
         this.classService = classService;
     }
 
-    @PostMapping
+    @GetMapping("/api/class")
+    public List<Class> getAllClass(){
+        return classService.findAll();
+    }
+
+    @GetMapping("/api/class/{id}")
+    public Class getAllClass(@PathVariable Long id){
+        return classService.findClass(id);
+    }
+
+    @PostMapping("/api/klasy")
     public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
         return classService.saveAll(listClass);
     }

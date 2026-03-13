@@ -1,12 +1,13 @@
 package com.projekt.panelpraktyk.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +17,7 @@ public class Student {
     private String email;
     private String phoneNumber;
     private String studentClass;
+    private Long class_id;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
