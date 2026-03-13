@@ -2,10 +2,7 @@ package com.projekt.panelpraktyk.controller;
 
 import com.projekt.panelpraktyk.service.StudentService;
 import com.projekt.panelpraktyk.models.Student;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +20,8 @@ public class StudentController {
         return StudentService.saveStudents(students);
     }
 
-
+    @PutMapping("/edit")
+    public Student editOne(@RequestParam String name, @RequestParam String lastname, @RequestBody Student student){
+        return StudentService.updateStudentByName(name, lastname, student);
+    }
 }
