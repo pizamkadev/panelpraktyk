@@ -18,6 +18,14 @@ public class StudentService {
         return studentRepository.saveAll(listStudents);
     }
 
+    public List<Student> findAll(){
+        return studentRepository.findAll();
+    }
+
+    public Student findOne(Long id) {
+        return studentRepository.findById(id).orElse(null);
+    }
+
     public Student updateStudentByName(String name, String lastname, Student details) {
         Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Nie znaleziono studenta: " + name + " " + lastname));
 
