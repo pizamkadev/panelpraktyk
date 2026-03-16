@@ -24,6 +24,12 @@ public class CompanyService {
     public List<Company> getCompanies() {
         return companyRepository.findAll();
     }
+
+    public Company getCompanyById(final Long id) {
+        return companyRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Company not found"));
+    }
+
     public void deleteCompanyById(final Long companyId) {
         companyRepository.deleteById(companyId);
     }
