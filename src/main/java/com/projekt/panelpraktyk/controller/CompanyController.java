@@ -31,6 +31,11 @@ public class CompanyController {
         return companyService.getCompanyById(id);
     }
 
+    @PutMapping("/{id}")
+    public Company updateCompany(@PathVariable Long id, @RequestBody Company company) {
+        return companyService.updateCompany(id, company);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteCompany(@PathVariable Long id) {
         companyService.deleteCompanyById(id);

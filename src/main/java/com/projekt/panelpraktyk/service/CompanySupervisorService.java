@@ -30,4 +30,17 @@ public class CompanySupervisorService {
     public CompanySupervisor getSupervisorById(final Long id) {
         return repository.findById(id).orElse(null);
     }
+    public CompanySupervisor updateSupervisor(final Long id, CompanySupervisor updatedSupervisor) {
+
+        CompanySupervisor supervisor = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Supervisor not found"));
+
+        supervisor.setFirstName(updatedSupervisor.getFirstName());
+        supervisor.setLastName(updatedSupervisor.getLastName());
+        supervisor.setEmail(updatedSupervisor.getEmail());
+        supervisor.setPhoneNumber(updatedSupervisor.getPhoneNumber());
+        supervisor.setCompany(updatedSupervisor.getCompany());
+
+        return repository.save(supervisor);
+    }
 }
