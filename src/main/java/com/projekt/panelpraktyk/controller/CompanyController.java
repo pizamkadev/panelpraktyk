@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/companies")
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -15,7 +16,7 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-    @PostMapping("/api/companys")
+    @PostMapping("/addcompanys")
     public Company addCompany(@RequestBody Company company) {
         return companyService.addCompany(company);
     }

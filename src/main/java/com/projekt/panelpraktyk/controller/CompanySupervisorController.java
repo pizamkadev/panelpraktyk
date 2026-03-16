@@ -16,7 +16,7 @@ public class CompanySupervisorController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/addsupervisors")
     public CompanySupervisor addSupervisor(@RequestBody CompanySupervisor supervisor) {
         return service.addSupervisor(supervisor);
     }

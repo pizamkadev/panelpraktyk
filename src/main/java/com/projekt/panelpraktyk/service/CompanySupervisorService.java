@@ -1,7 +1,7 @@
 package com.projekt.panelpraktyk.service;
 
-import com.projekt.panelpraktyk.repository.CompanySupervisorRepository;
 import com.projekt.panelpraktyk.models.CompanySupervisor;
+import com.projekt.panelpraktyk.repository.CompanySupervisorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,19 +28,22 @@ public class CompanySupervisorService {
     }
 
     public CompanySupervisor getSupervisorById(final Long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Supervisor not found"));
     }
-    public CompanySupervisor updateSupervisor(final Long id, CompanySupervisor updatedSupervisor) {
+    public CompanySupervisor updateSupervisor(Long id, CompanySupervisor updatedSupervisor) {
 
         CompanySupervisor supervisor = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Supervisor not found"));
 
-        supervisor.setFirstName(updatedSupervisor.getFirstName());
-        supervisor.setLastName(updatedSupervisor.getLastName());
-        supervisor.setEmail(updatedSupervisor.getEmail());
-        supervisor.setPhoneNumber(updatedSupervisor.getPhoneNumber());
-        supervisor.setCompany(updatedSupervisor.getCompany());
+        CompanySupervisor updated = supervisor.toBuilder()
+                .firstName(updatedSupervisor.getFirstName())
+                .lastName(updatedSupervisor.getLastName())
+                .email(updatedSupervisor.getEmail())
+                .phoneNumber(updatedSupervisor.getPhoneNumber())
+                .company(updatedSupervisor.getCompany())
+                .build();
 
-        return repository.save(supervisor);
+        return repository.save(updated);
     }
 }
