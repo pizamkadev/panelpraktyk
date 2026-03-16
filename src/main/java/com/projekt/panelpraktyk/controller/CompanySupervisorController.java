@@ -16,7 +16,7 @@ public class CompanySupervisorController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/addsupervisors")
     public CompanySupervisor addSupervisor(@RequestBody CompanySupervisor supervisor) {
         return service.addSupervisor(supervisor);
     }
@@ -25,9 +25,15 @@ public class CompanySupervisorController {
     public List<CompanySupervisor> getAllSupervisors() {
         return service.getAllSupervisors();
     }
+
     @GetMapping("/{id}")
     public CompanySupervisor getSupervisor(@PathVariable Long id) {
         return service.getSupervisorById(id);
+    }
+
+    @PutMapping("/{id}")
+    public CompanySupervisor updateSupervisor(@PathVariable Long id, @RequestBody CompanySupervisor supervisor) {
+        return service.updateSupervisor(id, supervisor);
     }
 
     @DeleteMapping("/{id}")

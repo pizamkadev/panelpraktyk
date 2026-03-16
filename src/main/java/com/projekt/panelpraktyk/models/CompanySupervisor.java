@@ -2,12 +2,14 @@ package com.projekt.panelpraktyk.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class CompanySupervisor {
 
     @Id
@@ -19,10 +21,8 @@ public class CompanySupervisor {
     private String email;
     private String phoneNumber;
 
-
     @ManyToOne
     @JoinColumn(name = "company_id")
     @JsonIgnoreProperties("supervisors")
     private Company company;
-
 }
