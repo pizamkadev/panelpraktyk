@@ -25,7 +25,7 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
-    public Company getCompanyById(Long id) {
+    public Company getCompanyById(final Long id) {
         return companyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Company not found"));
     }
