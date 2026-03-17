@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Company {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,8 +24,6 @@ public class Company {
     private String regon;
     private String krs;
     private String phoneNumber;
-
-
 
     @OneToMany(mappedBy = "company")
     @JsonIgnoreProperties("company")

@@ -21,10 +21,8 @@ public class CompanySupervisor {
     private String email;
     private String phoneNumber;
 
-
     @ManyToOne
     @JoinColumn(name = "company_id")
     @JsonIgnoreProperties("supervisors")
     private Company company;
-
 }

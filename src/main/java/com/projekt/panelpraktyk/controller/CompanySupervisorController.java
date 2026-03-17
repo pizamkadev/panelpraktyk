@@ -25,6 +25,7 @@ public class CompanySupervisorController {
     public List<CompanySupervisor> getAllSupervisors() {
         return service.getAllSupervisors();
     }
+
     @GetMapping("/{id}")
     public CompanySupervisor getSupervisor(@PathVariable Long id) {
         return service.getSupervisorById(id);
