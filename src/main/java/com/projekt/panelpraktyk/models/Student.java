@@ -2,7 +2,7 @@ package com.projekt.panelpraktyk.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List; // Nie zapomnij o imporcie!
+import java.util.List;
 
 @Entity
 @Getter
