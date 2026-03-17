@@ -30,7 +30,12 @@ public class CompanyController {
         return companyService.getCompanyById(id);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/editcompany/{id}")
+    public Company updateCompany(@PathVariable Long id, @RequestBody Company company) {
+        return companyService.updateCompany(id, company);
+    }
+
+    @DeleteMapping("/companys/{id}")
     public void deleteCompany(@PathVariable Long id) {
         companyService.deleteCompanyById(id);
     }

@@ -41,4 +41,8 @@ public class ClassService {
 
         return classRepository.save(schoolClass);
     }
+
+    public void deleteClassById(Long id) {
+        classRepository.deleteById(id);
+    }
 }

@@ -33,4 +33,8 @@ public class StudentController {
     public Student editOne(@RequestParam String name, @RequestParam String lastname, @RequestBody Student student){
         return studentService.updateStudentByName(name, lastname, student);
     }
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudentById(id);
+    }
 }
