@@ -2,12 +2,12 @@ package com.projekt.panelpraktyk.controller;
 
 import com.projekt.panelpraktyk.service.ClassService;
 import com.projekt.panelpraktyk.models.Class;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/klasy")
 public class ClassController {
 
     private final ClassService classService;
@@ -22,17 +22,17 @@ public class ClassController {
     }
 
     @GetMapping("/api/class/{id}")
-    public Class getAllClass(@PathVariable Long id){
+    public Class getClass(@Valid @PathVariable Long id){
         return classService.findClass(id);
     }
 
-    @PostMapping("/api/klasy")
-    public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
+    @PostMapping("/api/class/add")
+    public List<Class> addMultipleKlasy(@Valid @RequestBody List<Class> listClass) {
         return classService.saveAll(listClass);
     }
 
     @PutMapping("/edit")
-    public Class editClass(@RequestParam String className, @RequestBody Class details) {
+    public Class editClass(@Valid @RequestParam String className,@Valid @RequestBody Class details) {
         return classService.updateClassByName(className, details);
     }
 }

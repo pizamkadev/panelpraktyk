@@ -2,6 +2,7 @@ package com.projekt.panelpraktyk.controller;
 
 import com.projekt.panelpraktyk.service.CompanyService;
 import com.projekt.panelpraktyk.models.Company;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class CompanyController {
     }
 
     @PostMapping("/api/companys")
-    public Company addCompany(@RequestBody Company company) {
+    public Company addCompany(@Valid @RequestBody Company company) {
         return companyService.addCompany(company);
     }
 
@@ -26,12 +27,12 @@ public class CompanyController {
     }
 
     @GetMapping("/{id}")
-    public Company getCompany(@PathVariable Long id) {
+    public Company getCompany(@Valid @PathVariable Long id) {
         return companyService.getCompanyById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCompany(@PathVariable Long id) {
+    public void deleteCompany(@Valid @PathVariable Long id) {
         companyService.deleteCompanyById(id);
     }
 }

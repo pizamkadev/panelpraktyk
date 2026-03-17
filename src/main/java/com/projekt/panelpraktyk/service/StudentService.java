@@ -41,7 +41,7 @@ public class StudentService {
             student.setEmail(details.getEmail());
         }
 
-        if (details.getPhoneNumber() != null){
+        if (details.getPhoneNumber() >= 1){
             student.setPhoneNumber(details.getPhoneNumber());
         }
 

@@ -2,6 +2,7 @@ package com.projekt.panelpraktyk.controller;
 
 import com.projekt.panelpraktyk.service.CompanySupervisorService;
 import com.projekt.panelpraktyk.models.CompanySupervisor;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class CompanySupervisorController {
     }
 
     @PostMapping
-    public CompanySupervisor addSupervisor(@RequestBody CompanySupervisor supervisor) {
+    public CompanySupervisor addSupervisor(@Valid @RequestBody CompanySupervisor supervisor) {
         return service.addSupervisor(supervisor);
     }
 
@@ -26,12 +27,12 @@ public class CompanySupervisorController {
         return service.getAllSupervisors();
     }
     @GetMapping("/{id}")
-    public CompanySupervisor getSupervisor(@PathVariable Long id) {
+    public CompanySupervisor getSupervisor(@Valid @PathVariable Long id) {
         return service.getSupervisorById(id);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteSupervisor(@PathVariable Long id) {
+    public String deleteSupervisor(@Valid @PathVariable Long id) {
         service.deleteSupervisorById(id);
         return "Supervisor deleted with id: " + id;
     }

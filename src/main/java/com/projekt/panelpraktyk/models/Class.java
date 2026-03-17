@@ -1,11 +1,17 @@
 package com.projekt.panelpraktyk.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
@@ -13,19 +19,26 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "Klasy")
 public class Class {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
+    @NotNull
+    @Positive
     private Long id;
 
     @Column(name = "Klasa")
     @JsonProperty("className")
+    @NotBlank
     private String className;
 
     @Column(name = "LiczbaUczniow")
     @JsonProperty("numberOfStudents")
+    @Min(1)
+    @Max(30)
+    @Positive
     private int numberOfStudents;
 
     @OneToMany
