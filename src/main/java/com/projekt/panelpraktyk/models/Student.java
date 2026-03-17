@@ -2,6 +2,7 @@ package com.projekt.panelpraktyk.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List; // Nie zapomnij o imporcie!
 
 @Entity
 @Getter
@@ -21,4 +22,7 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Referral> referrals;
 }
