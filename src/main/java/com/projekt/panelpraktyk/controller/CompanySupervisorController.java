@@ -20,7 +20,7 @@ public class CompanySupervisorController {
         return service.addSupervisor(supervisor);
     }
 
-    @GetMapping
+    @GetMapping("/supervisors")
     public List<CompanySupervisor> getAllSupervisors() {
         return service.getAllSupervisors();
     }

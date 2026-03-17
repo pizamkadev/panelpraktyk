@@ -28,7 +28,7 @@ public class StudentController {
     public List<Student> addStudents(@RequestBody List<Student> students) {
         return studentService.saveStudents(students);
     }
-    @PutMapping("/api/edit")
+    @PutMapping("/api/student/edit")
     public Student editOne(@RequestParam String name, @RequestParam String lastname, @RequestBody Student student){
         return studentService.updateStudentByName(name, lastname, student);
     }

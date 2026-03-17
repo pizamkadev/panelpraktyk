@@ -21,7 +21,7 @@ public class CompanyController {
         return companyService.addCompany(company);
     }
 
-    @GetMapping
+    @GetMapping("/companies")
     public List<Company> getCompanies() {
         return companyService.getCompanies();
     }

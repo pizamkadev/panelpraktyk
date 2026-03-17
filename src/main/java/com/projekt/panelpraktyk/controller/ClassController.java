@@ -30,7 +30,7 @@ public class ClassController {
         return classService.saveAll(listClass);
     }
 
-    @PutMapping("/api/edit")
+    @PutMapping("/api/class/edit")
     public Class editClass(@RequestParam String className, @RequestBody Class details) {
         return classService.updateClassByName(className, details);
     }
