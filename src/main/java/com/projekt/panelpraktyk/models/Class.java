@@ -31,4 +31,36 @@ public class Class {
     @OneToMany
     @JoinColumn(name = "class_id")
     private List<Student> listStudents;
+
+    public int getNumberOfStudents(){
+        return listStudents.size();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public void setNumberOfStudents(int numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
+    }
+
+    public List<Student> getListStudents() {
+        return listStudents;
+    }
+
+    public void setListStudents(List<Student> listStudents) {
+        this.listStudents = listStudents;
+    }
 }

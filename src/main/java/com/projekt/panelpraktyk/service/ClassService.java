@@ -1,9 +1,7 @@
 package com.projekt.panelpraktyk.service;
 
-import com.projekt.panelpraktyk.models.Student;
-import com.projekt.panelpraktyk.repository.ClassRepository;
-import com.projekt.panelpraktyk.repository.ClassRepository;
 import com.projekt.panelpraktyk.models.Class;
+import com.projekt.panelpraktyk.repository.ClassRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
