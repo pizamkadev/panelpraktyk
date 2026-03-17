@@ -17,7 +17,6 @@ public class Student {
     private String email;
     private String phoneNumber;
     private String studentClass;
-    private Long class_id;
 
     @ManyToOne
     @JoinColumn(name = "company_id")

@@ -28,7 +28,7 @@ public class Class {
     @JsonProperty("numberOfStudents")
     private int numberOfStudents;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "class_id")
     private List<Student> listStudents;
 }
