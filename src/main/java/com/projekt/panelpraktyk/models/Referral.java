@@ -25,5 +25,8 @@ public class Referral {
     @ManyToOne
     @JoinColumn(name = "student_id")
     @JsonIgnore
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
 }
