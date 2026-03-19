@@ -27,7 +27,7 @@ public class StudentService {
     }
 
     public Student updateStudentByName(String name, String lastname, Student details) {
-        Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Nie znaleziono studenta: " + name + " " + lastname));
+        Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
 
         if (details.getName() != null){
             student.setName(details.getName());
