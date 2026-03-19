@@ -32,6 +32,7 @@ public class Class {
     @JsonProperty("numberOfStudents")
     private int numberOfStudents;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private Boolean isDeleted = false;
 
     @OneToMany

@@ -2,6 +2,7 @@ package com.projekt.panelpraktyk.controller;
 
 import com.projekt.panelpraktyk.service.ClassService;
 import com.projekt.panelpraktyk.models.Class;
+import com.projekt.panelpraktyk.models.Student;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,20 +12,35 @@ public class ClassController {
 
     private final ClassService classService;
 
-    public ClassController(ClassService classService) {
+    public ClassController(final ClassService classService) {
         this.classService = classService;
     }
 
     @GetMapping("/api/class")
-    public List<Class> getAllClass(){
+    public List<Class> getAllClass() {
         return classService.findAll();
     }
 
     @GetMapping("/api/class/{id}")
-    public Class getAllClass(@PathVariable Long id){
+    public Class getAllClass(@PathVariable final Long id) {
         return classService.findClass(id);
     }
 
+    @PostMapping
+    public List<Class> addMultipleKlasy(@RequestBody final List<Class> listClass) {
+        return classService.saveAll(listClass);
+    }
+
+    @PatchMapping("/{id}/students")
+    public Class addStudentsToClass(@PathVariable final Long id, @RequestBody final List<Student> students) {
+        return classService.addStudentsToClass(id, students);
+    }
+
+    @PutMapping("/edit")
+    public Class editClass(@RequestParam final String className, @RequestBody final Class details) {
+        return classService.updateClassByName(className, details);
+    }
+}
     @PostMapping("/api/class")
     public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
         return classService.saveAll(listClass);
