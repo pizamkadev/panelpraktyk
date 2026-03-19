@@ -1,5 +1,6 @@
 package com.projekt.panelpraktyk.controller;
 
+import com.projekt.panelpraktyk.models.Referral;
 import com.projekt.panelpraktyk.service.StudentService;
 import com.projekt.panelpraktyk.models.Student;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,9 @@ public class StudentController {
     public Student editOne(@RequestParam String name, @RequestParam String lastname, @RequestBody Student student){
         return studentService.updateStudentByName(name, lastname, student);
     }
+    @PostMapping("/student/{id}/referral")
+    public Referral addReferral(@PathVariable Long id, @RequestBody Referral referral) {
+        return studentService.addReferralToStudent(id, referral);
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable Long id) {
         studentService.deleteStudentById(id);

@@ -1,5 +1,6 @@
 package com.projekt.panelpraktyk.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -17,6 +18,13 @@ public class Referral {
     private String referralNumber;
     private LocalDate issueDate;
     private String position;
+    private String clinicName;
+    private String clinicAddress;
+    private String harmfulFactors;
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    @JsonIgnore
 
     @ManyToOne
     @JoinColumn(name = "student_id")
