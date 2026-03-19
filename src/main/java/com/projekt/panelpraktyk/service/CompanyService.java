@@ -33,6 +33,7 @@ public class CompanyService {
     public void deleteCompanyById(final Long companyId) {
         companyRepository.deleteById(companyId);
     }
+
     public Company updateCompany(final Long id, Company updatedCompany) {
 
         Company company = companyRepository.findById(id)

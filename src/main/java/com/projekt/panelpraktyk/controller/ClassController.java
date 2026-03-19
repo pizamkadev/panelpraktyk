@@ -34,4 +34,9 @@ public class ClassController {
     public Class editClass(@RequestParam String className, @RequestBody Class details) {
         return classService.updateClassByName(className, details);
     }
+
+    @DeleteMapping("/api/klasy/{id}")
+    public void deleteClass(@PathVariable Long id) {
+        classService.deleteClassById(id);
+    }
 }

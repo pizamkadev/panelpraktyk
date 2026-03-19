@@ -31,7 +31,7 @@ public class CompanyController {
         return companyService.getCompanyById(id);
     }
 
-    @PutMapping("/api/companies/{id}")
+    @PutMapping("/editcompany/{id}")
     public Company updateCompany(@PathVariable Long id, @RequestBody Company company) {
         return companyService.updateCompany(id, company);
     }
