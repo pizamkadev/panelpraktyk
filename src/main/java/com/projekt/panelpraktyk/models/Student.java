@@ -2,6 +2,7 @@ package com.projekt.panelpraktyk.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.SQLDelete;
 
@@ -27,4 +28,7 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Referral> referrals;
 }
