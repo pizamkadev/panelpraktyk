@@ -3,6 +3,8 @@ package com.projekt.panelpraktyk.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.List;
 
@@ -12,6 +14,8 @@ import java.util.List;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@SQLDelete(sql = "UPDATE company SET is_deleted = true WHERE id=?")
+@SQLRestriction("is_deleted = false")
 public class Company {
 
     @Id
@@ -24,6 +28,10 @@ public class Company {
     private String regon;
     private String krs;
     private String phoneNumber;
+
+    @Builder.Default
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
 
     @OneToMany(mappedBy = "company")
     @JsonIgnoreProperties("company")

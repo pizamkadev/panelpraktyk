@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/klasy")
 public class ClassController {
 
     private final ClassService classService;
@@ -40,5 +39,20 @@ public class ClassController {
     @PutMapping("/edit")
     public Class editClass(@RequestParam final String className, @RequestBody final Class details) {
         return classService.updateClassByName(className, details);
+    }
+}
+    @PostMapping("/api/class")
+    public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
+        return classService.saveAll(listClass);
+    }
+
+    @PutMapping("/api/class/edit")
+    public Class editClass(@RequestParam String className, @RequestBody Class details) {
+        return classService.updateClassByName(className, details);
+    }
+
+    @DeleteMapping("/api/klasy/{id}")
+    public void deleteClass(@PathVariable Long id) {
+        classService.deleteClassById(id);
     }
 }
