@@ -33,6 +33,16 @@ public class StudentService {
     public Referral addReferralToStudent(Long studentId, Referral referral) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + studentId));
+    public Student updateStudentByName(String name, String lastname, Student details) {
+        Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
+
+        if (details.getName() != null){
+            student.setName(details.getName());
+        }
+
+        if (details.getLastname() != null){
+            student.setLastname(details.getLastname());
+        }
 
         referral.setStudent(student);
         return referralRepository.save(referral);
@@ -50,5 +60,10 @@ public class StudentService {
         if (details.getCompany() != null) student.setCompany(details.getCompany());
 
         return studentRepository.save(student);
+    }
+}
+
+    public void deleteStudentById(Long id) {
+        studentRepository.deleteById(id);
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/companies")
+
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -16,27 +16,27 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-    @PostMapping("/addcompanys")
+    @PostMapping("/api/addcompanies")
     public Company addCompany(@RequestBody Company company) {
         return companyService.addCompany(company);
     }
 
-    @GetMapping
+    @GetMapping("/companies")
     public List<Company> getCompanies() {
         return companyService.getCompanies();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/companies/{id}")
     public Company getCompany(@PathVariable Long id) {
         return companyService.getCompanyById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/editcompany/{id}")
     public Company updateCompany(@PathVariable Long id, @RequestBody Company company) {
         return companyService.updateCompany(id, company);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/companies/{id}")
     public void deleteCompany(@PathVariable Long id) {
         companyService.deleteCompanyById(id);
     }
