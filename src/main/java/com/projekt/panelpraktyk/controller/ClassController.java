@@ -12,7 +12,7 @@ public class ClassController {
 
     private final ClassService classService;
 
-    public ClassController(final ClassService classService) {
+    public ClassController(ClassService classService) {
         this.classService = classService;
     }
 
@@ -26,21 +26,11 @@ public class ClassController {
         return classService.findClass(id);
     }
 
-    @PostMapping
-    public List<Class> addMultipleKlasy(@RequestBody final List<Class> listClass) {
-        return classService.saveAll(listClass);
-    }
-
     @PatchMapping("/{id}/students")
     public Class addStudentsToClass(@PathVariable final Long id, @RequestBody final List<Student> students) {
         return classService.addStudentsToClass(id, students);
     }
 
-    @PutMapping("/edit")
-    public Class editClass(@RequestParam final String className, @RequestBody final Class details) {
-        return classService.updateClassByName(className, details);
-    }
-}
     @PostMapping("/api/class")
     public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
         return classService.saveAll(listClass);
