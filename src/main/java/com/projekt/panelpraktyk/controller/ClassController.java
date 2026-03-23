@@ -2,6 +2,7 @@ package com.projekt.panelpraktyk.controller;
 
 import com.projekt.panelpraktyk.service.ClassService;
 import com.projekt.panelpraktyk.models.Class;
+import jakarta.validation.Valid;
 import com.projekt.panelpraktyk.models.Student;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class ClassController {
     }
 
     @GetMapping("/api/class/{id}")
-    public Class getAllClass(@PathVariable final Long id) {
+    public Class getClass(@Valid @PathVariable final Long id){
         return classService.findClass(id);
     }
 
@@ -37,7 +38,7 @@ public class ClassController {
     }
 
     @PutMapping("/api/class/edit")
-    public Class editClass(@RequestParam String className, @RequestBody Class details) {
+    public Class editClass(@Valid @RequestParam String className,@Valid @RequestBody Class details) {
         return classService.updateClassByName(className, details);
     }
 

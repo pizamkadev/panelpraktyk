@@ -53,6 +53,22 @@ public class StudentService {
             student.setLastname(details.getLastname());
         }
 
+        if (details.getEmail() != null){
+            student.setEmail(details.getEmail());
+        }
+
+        if (details.getPhoneNumber() >= 1){
+            student.setPhoneNumber(details.getPhoneNumber());
+        }
+
+        if (details.getStudentClass() != null){
+            student.setStudentClass(details.getStudentClass());
+        }
+
+        if (details.getCompany() != null) {
+            student.setCompany(details.getCompany());
+        }
+
         return studentRepository.save(student);
     }
 
