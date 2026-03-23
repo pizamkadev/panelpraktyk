@@ -92,7 +92,6 @@ public class Student {
     public void setCompany(Company company) {
         this.company = company;
     }
-}
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Referral> referrals;
