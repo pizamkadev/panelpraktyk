@@ -33,6 +33,8 @@ public class StudentService {
     public Referral addReferralToStudent(Long studentId, Referral referral) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + studentId));
+    }
+
     public Student updateStudentByName(String name, String lastname, Student details) {
         Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
 
@@ -47,21 +49,6 @@ public class StudentService {
         referral.setStudent(student);
         return referralRepository.save(referral);
     }
-
-    public Student updateStudentByName(String name, String lastname, Student details) {
-        Student student = studentRepository.findByNameAndLastname(name, lastname)
-                .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta: " + name + " " + lastname));
-
-        if (details.getName() != null) student.setName(details.getName());
-        if (details.getLastname() != null) student.setLastname(details.getLastname());
-        if (details.getEmail() != null) student.setEmail(details.getEmail());
-        if (details.getPhoneNumber() != null) student.setPhoneNumber(details.getPhoneNumber());
-        if (details.getStudentClass() != null) student.setStudentClass(details.getStudentClass());
-        if (details.getCompany() != null) student.setCompany(details.getCompany());
-
-        return studentRepository.save(student);
-    }
-}
 
     public void deleteStudentById(Long id) {
         studentRepository.deleteById(id);
