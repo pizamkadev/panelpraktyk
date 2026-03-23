@@ -13,8 +13,8 @@ import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
-import org.antlr.v4.runtime.misc.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,7 +29,6 @@ public class Class {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
-    @NotNull
     @Positive
     private Long id;
 
@@ -42,17 +41,14 @@ public class Class {
     @JsonProperty("numberOfStudents")
     @Min(1)
     @Max(30)
-    @Positive
     private int numberOfStudents;
-
-    @OneToMany(cascade = CascadeType.ALL)
     private Boolean isDeleted = false;
 
     @OneToMany
     @JoinColumn(name = "class_id")
-    private List<Student> listStudents;
+    private List<Student> listStudents=new ArrayList<>();
 
-    public int getNumberOfStudents(){
+    public int calculateNumberOfStudents(){
         return listStudents.size();
     }
 }

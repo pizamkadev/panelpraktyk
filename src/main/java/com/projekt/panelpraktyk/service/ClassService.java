@@ -66,8 +66,8 @@ public class ClassService {
             schoolClass.setClassName(details.getClassName());
         }
 
-        if (details.getNumberOfStudents() > 0) {
-            schoolClass.setNumberOfStudents(details.getNumberOfStudents());
+        if (details.calculateNumberOfStudents() > 0) {
+            schoolClass.setNumberOfStudents(details.calculateNumberOfStudents());
         }
 
 

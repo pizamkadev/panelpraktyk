@@ -22,11 +22,9 @@ public class Referral {
     private String clinicAddress;
     private String harmfulFactors;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    @JsonIgnore
 
     @ManyToOne
     @JoinColumn(name = "student_id")
+    @JsonIgnore
     private Student student;
 }

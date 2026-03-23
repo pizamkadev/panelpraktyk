@@ -25,25 +25,20 @@ public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long id;
 
     @NotBlank
     private String name;
     @NotBlank
     private String address;
-    @Max(10)
     @NotNull
-    private int nip;
-    @Max(9)
+    private String nip;
     @NotNull
-    private int regon;
-    @Max(10)
+    private String regon;
     @NotNull
-    private int krs;
-    @Max(9)
+    private String krs;
     @NotNull
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Builder.Default
     @Column(name = "is_deleted", nullable = false)

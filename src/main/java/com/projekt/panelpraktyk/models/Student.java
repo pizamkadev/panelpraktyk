@@ -20,21 +20,14 @@ import org.hibernate.annotations.SQLDelete;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long id;
-    @NotBlank
     private String name;
-    @NotBlank
     private String lastname;
-    @NotBlank
     @Email
     private String email;
-    @NotNull
-    @Positive
-    private int phoneNumber;
+    private String phoneNumber;
     private String studentClass;
     @NotNull
-    @Positive
     private Long class_id;
     private Boolean isDeleted = false;
 
