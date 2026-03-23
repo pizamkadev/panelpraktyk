@@ -1,5 +1,7 @@
 package com.projekt.panelpraktyk.service;
 
+import com.projekt.panelpraktyk.models.Class;
+import com.projekt.panelpraktyk.repository.ClassRepository;
 import com.projekt.panelpraktyk.models.Student;
 import com.projekt.panelpraktyk.repository.ClassRepository;
 import com.projekt.panelpraktyk.repository.StudentRepository;
@@ -67,6 +69,7 @@ public class ClassService {
         if (details.getNumberOfStudents() > 0) {
             schoolClass.setNumberOfStudents(details.getNumberOfStudents());
         }
+
 
         return classRepository.save(schoolClass);
     }

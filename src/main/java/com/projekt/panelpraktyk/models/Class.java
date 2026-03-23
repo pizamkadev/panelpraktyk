@@ -38,4 +38,8 @@ public class Class {
     @OneToMany
     @JoinColumn(name = "class_id")
     private List<Student> listStudents;
+
+    public int getNumberOfStudents(){
+        return listStudents.size();
+    }
 }
