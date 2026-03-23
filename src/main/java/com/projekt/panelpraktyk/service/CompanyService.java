@@ -33,4 +33,21 @@ public class CompanyService {
     public void deleteCompanyById(final Long companyId) {
         companyRepository.deleteById(companyId);
     }
+
+    public Company updateCompany(final Long id, Company updatedCompany) {
+
+        Company company = companyRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Company not found"));
+
+        Company updated = company.toBuilder()
+                .name(updatedCompany.getName())
+                .address(updatedCompany.getAddress())
+                .nip(updatedCompany.getNip())
+                .regon(updatedCompany.getRegon())
+                .krs(updatedCompany.getKrs())
+                .phoneNumber(updatedCompany.getPhoneNumber())
+                .build();
+
+        return companyRepository.save(updated);
+    }
 }

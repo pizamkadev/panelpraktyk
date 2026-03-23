@@ -1,7 +1,9 @@
 package com.projekt.panelpraktyk.service;
 
 import com.projekt.panelpraktyk.repository.StudentRepository;
+import com.projekt.panelpraktyk.repository.ReferralRepository;
 import com.projekt.panelpraktyk.models.Student;
+import com.projekt.panelpraktyk.models.Referral;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +11,11 @@ import java.util.List;
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
+    private final ReferralRepository referralRepository;
 
-    public StudentService(StudentRepository StudentRepository) {
-        this.studentRepository = StudentRepository;
+    public StudentService(StudentRepository studentRepository, ReferralRepository referralRepository) {
+        this.studentRepository = studentRepository;
+        this.referralRepository = referralRepository;
     }
 
     public List<Student> saveStudents(List<Student> listStudents) {
@@ -26,8 +30,13 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
+    public Referral addReferralToStudent(Long studentId, Referral referral) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + studentId));
+    }
+
     public Student updateStudentByName(String name, String lastname, Student details) {
-        Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Nie znaleziono studenta: " + name + " " + lastname));
+        Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
 
         if (details.getName() != null){
             student.setName(details.getName());
@@ -37,22 +46,11 @@ public class StudentService {
             student.setLastname(details.getLastname());
         }
 
-        if (details.getEmail() != null){
-            student.setEmail(details.getEmail());
-        }
+        referral.setStudent(student);
+        return referralRepository.save(referral);
+    }
 
-        if (details.getPhoneNumber() != null){
-            student.setPhoneNumber(details.getPhoneNumber());
-        }
-
-        if (details.getStudentClass() != null){
-            student.setStudentClass(details.getStudentClass());
-        }
-
-        if (details.getCompany() != null) {
-            student.setCompany(details.getCompany());
-        }
-
-        return studentRepository.save(student);
+    public void deleteStudentById(Long id) {
+        studentRepository.deleteById(id);
     }
 }
