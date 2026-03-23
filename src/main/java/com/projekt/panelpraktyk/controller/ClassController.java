@@ -3,6 +3,7 @@ package com.projekt.panelpraktyk.controller;
 import com.projekt.panelpraktyk.service.ClassService;
 import com.projekt.panelpraktyk.models.Class;
 import jakarta.validation.Valid;
+import com.projekt.panelpraktyk.models.Student;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,22 +18,35 @@ public class ClassController {
     }
 
     @GetMapping("/api/class")
-    public List<Class> getAllClass(){
+    public List<Class> getAllClass() {
         return classService.findAll();
     }
 
     @GetMapping("/api/class/{id}")
     public Class getClass(@Valid @PathVariable Long id){
+    public Class getAllClass(@PathVariable final Long id) {
         return classService.findClass(id);
     }
 
-    @PostMapping("/api/class/add")
-    public List<Class> addMultipleKlasy(@Valid @RequestBody List<Class> listClass) {
+    @PatchMapping("/{id}/students")
+    public Class addStudentsToClass(@PathVariable final Long id, @RequestBody final List<Student> students) {
+        return classService.addStudentsToClass(id, students);
+    }
+
+    @PostMapping("/api/class")
+    public List<Class> addMultipleKlasy(@RequestBody List<Class> listClass) {
         return classService.saveAll(listClass);
     }
 
     @PutMapping("/edit")
     public Class editClass(@Valid @RequestParam String className,@Valid @RequestBody Class details) {
+    @PutMapping("/api/class/edit")
+    public Class editClass(@RequestParam String className, @RequestBody Class details) {
         return classService.updateClassByName(className, details);
+    }
+
+    @DeleteMapping("/api/klasy/{id}")
+    public void deleteClass(@PathVariable Long id) {
+        classService.deleteClassById(id);
     }
 }

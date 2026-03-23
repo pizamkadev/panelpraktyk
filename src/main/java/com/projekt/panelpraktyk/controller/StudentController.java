@@ -1,5 +1,7 @@
 package com.projekt.panelpraktyk.controller;
 
+import com.projekt.panelpraktyk.models.Class;
+import com.projekt.panelpraktyk.models.Referral;
 import com.projekt.panelpraktyk.service.StudentService;
 import com.projekt.panelpraktyk.models.Student;
 import jakarta.validation.Valid;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class StudentController {
     private final StudentService studentService;
 
@@ -16,22 +17,37 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/student")
+    @GetMapping("/api/student")
     public List<Student> getAllStudents() {
         return studentService.findAll();
     }
 
-    @GetMapping("/student/{id}")
+    @GetMapping("/api/student/{id}")
     public Student getOneStudent(@Valid  @PathVariable Long id) {
         return studentService.findOne(id);
     }
 
-    @PostMapping("/addstudents")
+    @PostMapping("/api/addstudents")
     public List<Student> addStudents(@Valid @RequestBody List<Student> students) {
         return studentService.saveStudents(students);
     }
-    @PutMapping("/edit")
+
+    @PutMapping("/api/student/edit")
     public Student editOne(@Valid @RequestParam String name, @Valid @RequestParam String lastname, @Valid @RequestBody Student student){
         return studentService.updateStudentByName(name, lastname, student);
+    }
+
+    @PutMapping("/api/student/edit/class")
+    public Student editClass(@Valid @RequestParam String name,@Valid @RequestParam String lastname,@Valid @RequestBody Long classId, @RequestBody String className){
+        return studentService.updateStudentClassByName(name, lastname, classId, className);
+    }
+
+    @PostMapping("/api/student/{id}/referral")
+    public Referral addReferral(@Valid @PathVariable Long id, @Valid @RequestBody Referral referral) {
+        return studentService.addReferralToStudent(id, referral);
+    }
+    @DeleteMapping("/api/student/delete/{id}")
+    public void deleteStudent(@Valid @PathVariable Long id) {
+        studentService.deleteStudentById(id);
     }
 }

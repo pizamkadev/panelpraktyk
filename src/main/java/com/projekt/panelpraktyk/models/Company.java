@@ -6,13 +6,20 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Builder(toBuilder = true)
 @NoArgsConstructor
+@AllArgsConstructor
+@SQLDelete(sql = "UPDATE company SET is_deleted = true WHERE id=?")
+@SQLRestriction("is_deleted = false")
 public class Company {
 
 
@@ -38,7 +45,9 @@ public class Company {
     @NotNull
     private int phoneNumber;
 
-
+    @Builder.Default
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
 
     @OneToMany(mappedBy = "company")
     @JsonIgnoreProperties("company")

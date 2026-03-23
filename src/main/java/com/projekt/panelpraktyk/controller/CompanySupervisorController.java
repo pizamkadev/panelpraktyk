@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/supervisors")
 public class CompanySupervisorController {
 
     private final CompanySupervisorService service;
@@ -17,21 +16,27 @@ public class CompanySupervisorController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/api/addsupervisors")
     public CompanySupervisor addSupervisor(@Valid @RequestBody CompanySupervisor supervisor) {
         return service.addSupervisor(supervisor);
     }
 
-    @GetMapping
+    @GetMapping("/supervisors")
     public List<CompanySupervisor> getAllSupervisors() {
         return service.getAllSupervisors();
     }
-    @GetMapping("/{id}")
+
+    @GetMapping("/api/supervisors/{id}")
     public CompanySupervisor getSupervisor(@Valid @PathVariable Long id) {
         return service.getSupervisorById(id);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/api/supervisors/{id}")
+    public CompanySupervisor updateSupervisor(@PathVariable Long id, @RequestBody CompanySupervisor supervisor) {
+        return service.updateSupervisor(id, supervisor);
+    }
+
+    @DeleteMapping("/api/supervisors/{id}")
     public String deleteSupervisor(@Valid @PathVariable Long id) {
         service.deleteSupervisorById(id);
         return "Supervisor deleted with id: " + id;

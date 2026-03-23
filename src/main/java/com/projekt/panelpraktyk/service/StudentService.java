@@ -1,17 +1,22 @@
 package com.projekt.panelpraktyk.service;
 
 import com.projekt.panelpraktyk.repository.StudentRepository;
+import com.projekt.panelpraktyk.repository.ReferralRepository;
 import com.projekt.panelpraktyk.models.Student;
+import com.projekt.panelpraktyk.models.Referral;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
+    private final ReferralRepository referralRepository;
 
-    public StudentService(StudentRepository StudentRepository) {
-        this.studentRepository = StudentRepository;
+    public StudentService(StudentRepository studentRepository, ReferralRepository referralRepository) {
+        this.studentRepository = studentRepository;
+        this.referralRepository = referralRepository;
     }
 
     public List<Student> saveStudents(List<Student> listStudents) {
@@ -26,8 +31,19 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
+    @Transactional
+    public Referral addReferralToStudent(Long studentId, Referral referral) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + studentId));
+
+        referral.setStudent(student);
+        return referralRepository.save(referral);
+    }
+
+    @Transactional
     public Student updateStudentByName(String name, String lastname, Student details) {
-        Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Nie znaleziono studenta: " + name + " " + lastname));
+        Student student = studentRepository.findByNameAndLastname(name, lastname)
+                .orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
 
         if (details.getName() != null){
             student.setName(details.getName());
@@ -54,5 +70,24 @@ public class StudentService {
         }
 
         return studentRepository.save(student);
+    }
+
+    @Transactional
+    public Student updateStudentClassByName(String name, String lastname, Long classId, String className) {
+        Student student = studentRepository.findByNameAndLastname(name, lastname)
+                .orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
+
+        if (classId != null){
+            student.setClass_id(classId);
+        }
+        if (className != null){
+            student.setStudentClass(className);
+        }
+
+        return studentRepository.save(student);
+    }
+
+    public void deleteStudentById(Long id) {
+        studentRepository.deleteById(id);
     }
 }
