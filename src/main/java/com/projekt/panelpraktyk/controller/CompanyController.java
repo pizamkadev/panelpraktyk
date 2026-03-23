@@ -19,6 +19,8 @@ public class CompanyController {
 
     @PostMapping("/api/company")
     public Company addCompany(@Valid @RequestBody Company company) {
+        return companyService.addCompany(company);
+    }
 
     @GetMapping("/api/companies")
     public List<Company> getCompanies() {
