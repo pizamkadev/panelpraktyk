@@ -56,6 +56,21 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
+    @Transactional
+    public Student updateStudentClassByName(String name, String lastname, Long classId, String className) {
+        Student student = studentRepository.findByNameAndLastname(name, lastname)
+                .orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
+
+        if (classId != null){
+            student.setClass_id(classId);
+        }
+        if (className != null){
+            student.setStudentClass(className);
+        }
+
+        return studentRepository.save(student);
+    }
+
     public void deleteStudentById(Long id) {
         studentRepository.deleteById(id);
     }
