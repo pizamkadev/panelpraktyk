@@ -19,12 +19,11 @@ import org.hibernate.annotations.SQLRestriction;
 @NoArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE company_supervisor SET is_deleted = true WHERE id=?")
-@SQLRestriction("is_deleted = false")
+@SQLRestriction("is_deleted = false AND is_archived = false")
 public class CompanySupervisor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long id;
     @NotBlank
     private String firstName;
@@ -34,12 +33,12 @@ public class CompanySupervisor {
     @Email
     private String email;
     @NotNull
-    @Max(9)
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Builder.Default
-    @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
+
+    private Boolean isArchived = false;
 
     @ManyToOne
     @JoinColumn(name = "company_id")

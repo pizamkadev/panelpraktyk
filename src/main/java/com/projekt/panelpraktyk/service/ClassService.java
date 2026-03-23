@@ -66,12 +66,24 @@ public class ClassService {
             schoolClass.setClassName(details.getClassName());
         }
 
-        if (details.getNumberOfStudents() > 0) {
-            schoolClass.setNumberOfStudents(details.getNumberOfStudents());
+        if (details.calculateNumberOfStudents() > 0) {
+            schoolClass.setNumberOfStudents(details.calculateNumberOfStudents());
         }
 
 
         return classRepository.save(schoolClass);
+    }
+
+    @Transactional
+    public Class archiveClass(Long id) {
+        Class clazz = classRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono klasy o ID: " + id));
+        clazz.setIsArchived(true);
+        return classRepository.save(clazz);
+    }
+
+    public List<Class> findAllArchived() {
+        return classRepository.findAllArchived();
     }
 
     public void deleteClassById(Long id) {

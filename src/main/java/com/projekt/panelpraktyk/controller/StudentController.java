@@ -50,4 +50,19 @@ public class StudentController {
     public void deleteStudent(@Valid @PathVariable Long id) {
         studentService.deleteStudentById(id);
     }
+
+    @GetMapping("/api/student/archived")
+    public List<Student> getArchivedStudents() {
+        return studentService.findAllArchived();
+    }
+
+    @PutMapping("/api/student/archive/{id}")
+    public Student archiveStudent(@PathVariable Long id) {
+        return studentService.archiveStudent(id);
+    }
+
+    @PutMapping("/api/student/restore/{id}")
+    public Student restoreStudent(@PathVariable Long id) {
+        return studentService.restoreFromArchive(id);
+    }
 }

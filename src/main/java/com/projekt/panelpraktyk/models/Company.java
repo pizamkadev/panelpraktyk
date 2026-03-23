@@ -19,35 +19,32 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE company SET is_deleted = true WHERE id=?")
-@SQLRestriction("is_deleted = false")
+@SQLRestriction("is_deleted = false AND is_archived = false")
 public class Company {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long id;
 
     @NotBlank
     private String name;
     @NotBlank
     private String address;
-    @Max(10)
     @NotNull
-    private int nip;
-    @Max(9)
+    private String nip;
     @NotNull
-    private int regon;
-    @Max(10)
+    private String regon;
     @NotNull
-    private int krs;
-    @Max(9)
+    private String krs;
     @NotNull
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Builder.Default
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
+
+    private Boolean isArchived = false;
 
     @OneToMany(mappedBy = "company")
     @JsonIgnoreProperties("company")

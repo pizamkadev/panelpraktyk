@@ -46,4 +46,14 @@ public class ClassController {
     public void deleteClass(@PathVariable Long id) {
         classService.deleteClassById(id);
     }
+
+    @PutMapping("/api/class/archive/{id}")
+    public Class archiveClass(@PathVariable Long id) {
+        return classService.archiveClass(id);
+    }
+
+    @GetMapping("/api/class/archived")
+    public List<Class> getArchivedClasses() {
+        return classService.findAllArchived();
+    }
 }
