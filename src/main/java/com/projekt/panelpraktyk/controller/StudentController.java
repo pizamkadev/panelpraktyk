@@ -36,6 +36,7 @@ public class StudentController {
     @PostMapping("/student/{id}/referral")
     public Referral addReferral(@PathVariable Long id, @RequestBody Referral referral) {
         return studentService.addReferralToStudent(id, referral);
+    }
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable Long id) {
         studentService.deleteStudentById(id);

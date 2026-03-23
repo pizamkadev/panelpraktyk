@@ -5,6 +5,7 @@ import com.projekt.panelpraktyk.repository.ReferralRepository;
 import com.projekt.panelpraktyk.models.Student;
 import com.projekt.panelpraktyk.models.Referral;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,13 +31,19 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
+    @Transactional
     public Referral addReferralToStudent(Long studentId, Referral referral) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + studentId));
+
+        referral.setStudent(student);
+        return referralRepository.save(referral);
     }
 
+    @Transactional
     public Student updateStudentByName(String name, String lastname, Student details) {
-        Student student = studentRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
+        Student student = studentRepository.findByNameAndLastname(name, lastname)
+                .orElseThrow(() -> new RuntimeException("Student not found: " + name + " " + lastname));
 
         if (details.getName() != null){
             student.setName(details.getName());
@@ -46,8 +53,7 @@ public class StudentService {
             student.setLastname(details.getLastname());
         }
 
-        referral.setStudent(student);
-        return referralRepository.save(referral);
+        return studentRepository.save(student);
     }
 
     public void deleteStudentById(Long id) {
