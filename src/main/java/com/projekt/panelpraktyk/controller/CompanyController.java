@@ -1,10 +1,13 @@
 package com.projekt.panelpraktyk.controller;
 
 import com.projekt.panelpraktyk.service.CompanyService;
+import com.projekt.panelpraktyk.service.PdfService;
 import com.projekt.panelpraktyk.models.Company;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -12,9 +15,11 @@ import java.util.List;
 public class CompanyController {
 
     private final CompanyService companyService;
+    private final PdfService pdfService;
 
-    public CompanyController(CompanyService companyService) {
+    public CompanyController(CompanyService companyService, PdfService pdfService) {
         this.companyService = companyService;
+        this.pdfService = pdfService;
     }
 
     @PostMapping("/api/company")
@@ -30,6 +35,16 @@ public class CompanyController {
     @GetMapping("/api/companies/{id}")
     public Company getCompany(@Valid @PathVariable Long id) {
         return companyService.getCompanyById(id);
+    }
+
+    @GetMapping("/api/companies/{id}/pdf")
+    public void generateCompanyPdf(@Valid @PathVariable Long id, HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=company_report_" + id + ".pdf");
+
+        Company company = companyService.getCompanyById(id);
+
+        pdfService.generateCompanyPdf(company, response);
     }
 
     @PutMapping("/api/company/edit/{id}")
