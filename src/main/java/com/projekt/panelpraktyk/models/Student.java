@@ -21,11 +21,8 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private String name;
-    @NotBlank
     private String lastname;
-    @NotBlank
     @Email
     private String email;
     private String phoneNumber;
