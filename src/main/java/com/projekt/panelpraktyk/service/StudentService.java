@@ -87,6 +87,30 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
+    @Transactional
+    public Student archiveStudent(Long id) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + id));
+
+        student.setIsArchived(true); // Ustawiamy flagę
+        return studentRepository.save(student);
+    }
+
+    @Transactional
+    public Student restoreFromArchive(Long id) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + id));
+
+        student.setIsArchived(false); // Przywracamy flagę na false
+        return studentRepository.save(student);
+    }
+
+    public List<Student> findAllArchived() {
+        // Zmieniamy na findAllArchived(), którą musisz dopisać do Repository
+        // Zwykłe findByIsArchivedTrue nie zadziała przez @SQLRestriction
+        return studentRepository.findAllArchived();
+    }
+
     public void deleteStudentById(Long id) {
         studentRepository.deleteById(id);
     }

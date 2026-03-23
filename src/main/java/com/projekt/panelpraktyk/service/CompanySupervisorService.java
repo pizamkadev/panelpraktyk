@@ -2,6 +2,7 @@ package com.projekt.panelpraktyk.service;
 
 import com.projekt.panelpraktyk.models.CompanySupervisor;
 import com.projekt.panelpraktyk.repository.CompanySupervisorRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,13 +29,11 @@ public class CompanySupervisorService {
     }
 
     public CompanySupervisor getSupervisorById(final Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Supervisor not found"));
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Supervisor nie znaleziony"));
     }
     public CompanySupervisor updateSupervisor(Long id, CompanySupervisor updatedSupervisor) {
 
-        CompanySupervisor supervisor = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Supervisor not found"));
+        CompanySupervisor supervisor = repository.findById(id).orElseThrow(() -> new RuntimeException("Supervisor nie znaleziony"));
 
         CompanySupervisor updated = supervisor.toBuilder()
                 .firstName(updatedSupervisor.getFirstName())
@@ -45,5 +44,16 @@ public class CompanySupervisorService {
                 .build();
 
         return repository.save(updated);
+    }
+
+    @Transactional
+    public CompanySupervisor archiveSupervisor(Long id) {
+        CompanySupervisor supervisor = repository.findById(id).orElseThrow(() -> new RuntimeException("Nie znaleziono opiekuna o ID: " + id));
+        supervisor.setIsArchived(true);
+        return repository.save(supervisor);
+    }
+
+    public List<CompanySupervisor> findAllArchived() {
+        return repository.findAllArchived();
     }
 }

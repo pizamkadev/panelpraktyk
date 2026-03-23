@@ -56,4 +56,14 @@ public class CompanyController {
     public void deleteCompany(@Valid @PathVariable Long id) {
         companyService.deleteCompanyById(id);
     }
+
+    @PutMapping("/api/company/archive/{id}")
+    public Company archiveCompany(@PathVariable Long id) {
+        return companyService.archiveCompany(id);
+    }
+
+    @GetMapping("/api/company/archived")
+    public List<Company> getArchivedCompanies() {
+        return companyService.findAllArchived();
+    }
 }

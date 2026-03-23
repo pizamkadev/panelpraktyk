@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE company SET is_deleted = true WHERE id=?")
-@SQLRestriction("is_deleted = false")
+@SQLRestriction("is_deleted = false AND is_archived = false")
 public class Company {
 
 
@@ -43,6 +43,8 @@ public class Company {
     @Builder.Default
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
+
+    private Boolean isArchived = false;
 
     @OneToMany(mappedBy = "company")
     @JsonIgnoreProperties("company")

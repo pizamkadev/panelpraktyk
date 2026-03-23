@@ -5,10 +5,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.SQLDelete;
@@ -24,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "Klasy")
 @SQLDelete(sql = "UPDATE Klasy SET is_deleted = true WHERE id=?")
-@SQLRestriction("is_deleted = false")
+@SQLRestriction("is_deleted = false AND is_archived = false")
 public class Class {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,8 +39,10 @@ public class Class {
     @Min(1)
     @Max(30)
     private int numberOfStudents;
+
     private Boolean isDeleted = false;
 
+    private Boolean isArchived = false;
     @OneToMany
     @JoinColumn(name = "class_id")
     private List<Student> listStudents=new ArrayList<>();

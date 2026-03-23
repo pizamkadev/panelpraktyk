@@ -16,7 +16,7 @@ import org.hibernate.annotations.SQLDelete;
 @NoArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE student SET is_deleted = true WHERE id=?")
-@SQLRestriction("is_deleted = false")
+@SQLRestriction("is_deleted = false AND is_archived = false")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,7 @@ public class Student {
     @NotNull
     private Long class_id;
     private Boolean isDeleted = false;
+    private Boolean isArchived = false;
 
     @ManyToOne
     @JoinColumn(name = "company_id")

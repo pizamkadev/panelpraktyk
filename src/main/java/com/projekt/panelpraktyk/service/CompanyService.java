@@ -4,6 +4,7 @@ import com.projekt.panelpraktyk.repository.CompanyRepository;
 
 import com.projekt.panelpraktyk.models.Company;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,5 +50,17 @@ public class CompanyService {
                 .build();
 
         return companyRepository.save(updated);
+    }
+
+    @Transactional
+    public Company archiveCompany(Long id) {
+        Company company = companyRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono firmy o ID: " + id));
+        company.setIsArchived(true);
+        return companyRepository.save(company);
+    }
+
+    public List<Company> findAllArchived() {
+        return companyRepository.findAllArchived();
     }
 }

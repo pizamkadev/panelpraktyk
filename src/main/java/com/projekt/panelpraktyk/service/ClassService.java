@@ -74,6 +74,18 @@ public class ClassService {
         return classRepository.save(schoolClass);
     }
 
+    @Transactional
+    public Class archiveClass(Long id) {
+        Class clazz = classRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono klasy o ID: " + id));
+        clazz.setIsArchived(true);
+        return classRepository.save(clazz);
+    }
+
+    public List<Class> findAllArchived() {
+        return classRepository.findAllArchived();
+    }
+
     public void deleteClassById(Long id) {
         classRepository.deleteById(id);
     }

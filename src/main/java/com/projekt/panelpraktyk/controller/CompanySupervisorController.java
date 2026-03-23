@@ -41,4 +41,14 @@ public class CompanySupervisorController {
         service.deleteSupervisorById(id);
         return "Supervisor deleted with id: " + id;
     }
+
+    @PutMapping("/api/supervisor/archive/{id}")
+    public CompanySupervisor archiveSupervisor(@PathVariable Long id) {
+        return service.archiveSupervisor(id);
+    }
+
+    @GetMapping("/api/supervisor/archived")
+    public List<CompanySupervisor> getArchivedSupervisors() {
+        return service.findAllArchived();
+    }
 }
