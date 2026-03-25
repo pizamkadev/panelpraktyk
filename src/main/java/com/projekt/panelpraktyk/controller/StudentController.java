@@ -1,7 +1,6 @@
 package com.projekt.panelpraktyk.controller;
 
-import com.projekt.panelpraktyk.models.Class;
-import com.projekt.panelpraktyk.models.Referral;
+import com.projekt.panelpraktyk.models.ReferralMedical;
 import com.projekt.panelpraktyk.service.StudentService;
 import com.projekt.panelpraktyk.models.Student;
 import jakarta.validation.Valid;
@@ -43,7 +42,7 @@ public class StudentController {
     }
 
     @PostMapping("/api/student/{id}/referral")
-    public Referral addReferral(@Valid @PathVariable Long id, @Valid @RequestBody Referral referral) {
+    public ReferralMedical addReferral(@Valid @PathVariable Long id, @Valid @RequestBody ReferralMedical referral) {
         return studentService.addReferralToStudent(id, referral);
     }
     @DeleteMapping("/api/student/delete/{id}")

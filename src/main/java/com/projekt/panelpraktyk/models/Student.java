@@ -2,9 +2,7 @@ package com.projekt.panelpraktyk.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.*;
 import java.util.List;
 import org.hibernate.annotations.SQLRestriction;
@@ -101,5 +99,5 @@ public class Student {
     }
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Referral> referrals;
+    private List<ReferralMedical> referrals;
 }
