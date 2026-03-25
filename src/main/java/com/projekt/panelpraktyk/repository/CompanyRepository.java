@@ -9,4 +9,5 @@ import java.util.List;
 public interface CompanyRepository extends JpaRepository<Company, Long> {
     @Query(value = "SELECT * FROM company WHERE is_archived = true AND is_deleted = false", nativeQuery = true)
     List<Company> findAllArchived();
+
 }
