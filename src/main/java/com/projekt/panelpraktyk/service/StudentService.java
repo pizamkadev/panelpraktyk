@@ -3,7 +3,7 @@ package com.projekt.panelpraktyk.service;
 import com.projekt.panelpraktyk.repository.StudentRepository;
 import com.projekt.panelpraktyk.repository.ReferralRepository;
 import com.projekt.panelpraktyk.models.Student;
-import com.projekt.panelpraktyk.models.Referral;
+import com.projekt.panelpraktyk.models.ReferralMedical;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +32,7 @@ public class StudentService {
     }
 
     @Transactional
-    public Referral addReferralToStudent(Long studentId, Referral referral) {
+    public ReferralMedical addReferralToStudent(Long studentId, ReferralMedical referral) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + studentId));
 
