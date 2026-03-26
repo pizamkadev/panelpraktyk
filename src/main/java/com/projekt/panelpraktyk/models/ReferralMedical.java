@@ -21,6 +21,7 @@ public class ReferralMedical {
     private String clinicName;
     private String clinicAddress;
     private String harmfulFactors;
+    private LocalDate expirationDate;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
