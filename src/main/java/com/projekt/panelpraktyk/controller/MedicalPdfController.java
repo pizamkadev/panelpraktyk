@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,19 @@ public class MedicalPdfController {
         ByteArrayInputStream bis = MedicalPdfService.generateReferralStream(referralId);
 
         HttpHeaders headers = new HttpHeaders();
-        // attachment sprawia, że plik się pobiera, a nie otwiera w przeglądarce
         headers.add("Content-Disposition", "attachment; filename=skierowanie_" + referralId + ".pdf");
 
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(bis));
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(new InputStreamResource(bis));
+    }
+
+    @GetMapping("/api/student/{studentId}/check-medical")
+    public ResponseEntity<String> checkMedicalStatus(@PathVariable Long studentId) {
+        boolean isValid = referralService.hasValidMedicalExam(studentId);
+
+        if (isValid) {
+            return ResponseEntity.ok("Student posiada ważne badania lekarskie.");
+        } else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Brak ważnych badań lekarskich! Student nie może zostać dopuszczony.");
+        }
     }
 }

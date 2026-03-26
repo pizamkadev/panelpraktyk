@@ -16,20 +16,35 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class MedicalPdfService {
 
-    private final StudentRepository studentRepository;
     private final ReferralRepository referralRepository;
+    private final StudentRepository studentRepository;
+
+    public boolean hasValidMedicalExam(Long studentId) {
+        List<ReferralMedical> referrals = referralRepository.findAllByStudentId(studentId);
+        LocalDate today = LocalDate.now();
+
+        for (ReferralMedical r : referrals) {
+            if (r.getExpirationDate() != null) {
+                if (r.getExpirationDate().isAfter(today) || r.getExpirationDate().isEqual(today)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     @Transactional
     public ReferralMedical createReferral(ReferralMedical referral, Long studentId) {
-        Student student = studentRepository.findById(studentId).orElseThrow(() -> new RuntimeException("Nie znaleziono studenta o ID: " + studentId));
+        Student student = studentRepository.findById(studentId).orElseThrow(() -> new RuntimeException("Nie znaleziono studenta"));
 
         referral.setStudent(student);
-
         return referralRepository.save(referral);
     }
 
