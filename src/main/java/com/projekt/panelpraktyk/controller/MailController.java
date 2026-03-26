@@ -14,13 +14,13 @@ public class MailController {
     private final EmailService emailService;
     private final TokenRepository tokenRepository;
 
-    @GetMapping("/wyslij")
+    @GetMapping("/send")
     public String send(@RequestParam String email) {
         emailService.sendVerificationLink(email);
-        return "Poszło na: " + email;
+        return "Send to: " + email;
     }
 
-    @GetMapping("/weryfikuj")
+    @GetMapping("/verify")
     public String verifyToken(@RequestParam String token) {
         return tokenRepository.findByToken(token)
                 .map(t -> {

@@ -6,11 +6,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,13 +39,13 @@ public class Class {
     private int numberOfStudents;
 
     private Boolean isDeleted = false;
-
     private Boolean isArchived = false;
+
     @OneToMany
     @JoinColumn(name = "class_id")
-    private List<Student> listStudents=new ArrayList<>();
+    private List<Student> listStudents = new ArrayList<>();
 
-    public int calculateNumberOfStudents(){
+    public int calculateNumberOfStudents() {
         return listStudents.size();
     }
 }
