@@ -21,7 +21,7 @@ public class CompanySupervisorController {
         return service.addSupervisor(supervisor);
     }
 
-    @GetMapping("/supervisors")
+    @GetMapping("/api/supervisors")
     public List<CompanySupervisor> getAllSupervisors() {
         return service.getAllSupervisors();
     }

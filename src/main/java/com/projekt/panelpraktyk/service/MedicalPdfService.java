@@ -100,7 +100,7 @@ public class MedicalPdfService {
         document.add(new Paragraph("\nII. Skierowana osoba jest:", fNormal));
         document.add(new Paragraph("[  ] kandydatem do szkoły ponadpodstawowej", fNormal));
         document.add(new Paragraph("[  ] nieletnim kandydatem na kwalifikacyjny kurs zawodowy", fNormal));
-        document.add(new Paragraph("[  ] badania okresowe ucznia  szkoły ponadpodstawowej", fNormal));
+        document.add(new Paragraph("[ X ] badania okresowe ucznia  szkoły ponadpodstawowej", fNormal));
         document.add(new Paragraph("[  ] pełnoletnim kandydatem na kwalifikacyjny kurs zawodowy*", fNormal));
         document.add(new Paragraph("[  ] nieletnim kandydatem na kwalifikacyjny kurs zawodowy", fNormal));
         document.add(new Paragraph("[  ] pełnoletnim słuchaczem na kwalifikacyjny kurs zawodowy*", fNormal));
